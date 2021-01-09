@@ -4,15 +4,13 @@ Set of includable tools to simplify and improve bash coding
 * [dataset](#dataset)
 	* [dataset::match](#datasetmatch)
 
+----
 
-
-
-
-## dataset
+# dataset
 
 Works with associative arrays
 
-### dataset::read
+## dataset::read
 
 Read a file converting its contents to an associative array;
 
@@ -33,7 +31,7 @@ for i in ${!X[@]}; do
 done
 ```
 
-### dataset::match
+## dataset::match
 
 Get all the indexes of an associative array starting with the string.
 
