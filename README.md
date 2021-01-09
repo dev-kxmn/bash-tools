@@ -1,6 +1,13 @@
 # bash-tools
 Set of includable tools to simplify and improve bash coding
 
+* [dataset](#dataset)
+	* [dataset::match](#datasetmatch)
+
+
+
+
+
 ## dataset
 
 Works with associative arrays
