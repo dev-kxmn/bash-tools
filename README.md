@@ -19,8 +19,8 @@ key2      = durian
 ```
 
 Call example:
-```
-declare -A X=$(dataset::read example.conf)
+```bash
+declare -A X=$( dataset::read example.conf )
 for i in ${!X[@]}; do
 	echo $i contains ${X[$i]};
 done
@@ -30,11 +30,11 @@ done
 
 Get all the indexes of an associative array starting with the string.
 
-```
-for i in $(dataset::match X 'itsa.') ; do
+```bash
+for i in $( dataset::match X 'itsa.') ; do
 	echo 1st call matched $i with value ${X[$i]};
 done
 
-for i in $(dataset::match X 'key' ) ; do
+for i in $( dataset::match X 'key' ) ; do
 	echo 2nd matched $i with value ${X[$i]};
 done
