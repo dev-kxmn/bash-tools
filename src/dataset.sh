@@ -2,15 +2,21 @@
 # Read a file to an associative array from lines:
 # `pair = complex value`
 dataset::read() {
+
 	awk '
 		BEGIN {
-			RS="[\n\r]";
-			FS="[[:space:]]*=[[:space:]]*";
+			RS="[[:space:]]*[\n\r]";        # Trim end whitespace
+			FS="[[:space:]]*=[[:space:]]*"; 
 			printf "( " , ""
 		};
-
-		!/^[[:space:]]*[^[:space:]]+[[:space:]]*=[[:space:]]*[^[:space:]]/ {next}
-		{ printf "[\"%s\"]=\"%s\" ", $1, $2; next }
+		/^[[:alnum:]][^[:space:]]+[[:space:]]*=[[:space:]]*/ {
+			{
+				str=$0; key=$1; $1=""; printf "[\"%s\"]=", key; 
+				match(str, FS); printf "\"%s\" ", substr(str, RSTART+RLENGTH, length(str));
+				next;
+			}
+		}
+		{next}
 		END {
 			printf ")", ""
 		}

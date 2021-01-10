@@ -1,17 +1,18 @@
-. $(realpath $(dirname $0)/../src/dataset.sh)
+PDIR=$(realpath $(dirname $0)/../)
+. $PDIR/src/dataset.sh
+declare -A X=$(dataset::read $PDIR/tests/example.conf)
+
 echo -e "\n\n### dataset:read"
-declare -A X=$(dataset::read example.conf)
-
-echo ${X[@]}
-for i in ${!X[@]}; do
-	echo $i contains ${X[$i]};
+for i in "${!X[@]}"; do
+	echo "Key: ($i) / Value: (${X[$i]})";
 done
 
-echo -e "\n\n### dataset::match"
+echo -e "\n\n### Filtered by keys started with 'itsa.'"
 for i in $(dataset::match X 'itsa.') ; do
-	echo "1st call <<$i>> -> ${X[$i]}";
+	echo "Key: ($i) / Value: (${X[$i]})";
 done
 
-for i in $(dataset::match X 'key' ) ; do
-	echo "2nd call <<$i>> -> ${X[$i]}";
+echo -e "\n\n### Filtered by keys started with '[Kk]ey'"
+for i in $(dataset::match X '[kK]ey' ) ; do
+	echo "Key: ($i) / Value: (${X[$i]})";
 done
